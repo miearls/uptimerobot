@@ -25,7 +25,6 @@ def serverchecks():
                 'IMAP': 'type=4&sub_type=6',
                 }
     for X in monitors:
-	# debug payload statement
         #print("api_key=" + APIKEY + "&format=json&" + monitors[X] + "&url=" + myURL + "&friendly_name=" + myURL + "-" + X + "&alert_contacts=" + alertContact + "")
         payload = "api_key=" + APIKEY + "&format=json&" + monitors[X] + "&url=" + myURL + "&friendly_name=" + myURL + "-" + X + "&alert_contacts=" + alertContact + ""
         conn.request("POST", "/v2/newMonitor", payload, headers)
@@ -42,7 +41,6 @@ def hostcheck():
     monitors = {'HTTP': 'type=1'
                 }
     for X in monitors:
-	# debug payload statement
         #print("api_key=" + APIKEY + "&format=json&" + monitors[X] + "&url=http://" + myURL + "&friendly_name=" + myURL + "-" + X + "&alert_contacts=" + alertContact + "")
         payload = "api_key=" + APIKEY + "&format=json&" + monitors[X] + "&url=http://" + myURL + "&friendly_name=" + myURL + "-" + X + "&alert_contacts=" + alertContact + ""
         conn.request("POST", "/v2/newMonitor", payload, headers)
@@ -51,6 +49,8 @@ def hostcheck():
         print(data.decode("utf-8"))
 
 if len(sys.argv) != 3:
+    print("This script will create health monitors on uptimerobot.")
+    print("")
     print("usage", sys.argv[0], "<HOST or SERVER> <URL>")
     sys.exit(3)
 
